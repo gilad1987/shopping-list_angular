@@ -1,19 +1,25 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-mat-card{
+mat-card {
   max-width: 500px;
   margin: 0 auto;
 }
 
-.add-action{
+.add-action {
   display: flex;
-  mat-form-field{
+  mat-form-field {
     flex: 1;
   }
 }
 
-.user-name{
+.user-name {
   font-size: 11px;
+}
+
+mat-checkbox.mat-checkbox-checked {
+  .product-name {
+    text-decoration-line: line-through;
+  }
 }
 
 ul {
@@ -22,7 +28,7 @@ ul {
 
   li {
     display: flex;
-    button{
+    button {
       margin-right: auto !important;
     }
   }
