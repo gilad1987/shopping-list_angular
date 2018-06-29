@@ -1,0 +1,29 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+mat-card{
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.add-action{
+  display: flex;
+  mat-form-field{
+    flex: 1;
+  }
+}
+
+.user-name{
+  font-size: 11px;
+}
+
+ul {
+  list-style: none;
+  padding-right: 5px;
+
+  li {
+    display: flex;
+    button{
+      margin-right: auto !important;
+    }
+  }
+}
