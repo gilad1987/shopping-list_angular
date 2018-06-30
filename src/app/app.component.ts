@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
 import {SocketService} from './services/socket-service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {MatDialog} from '@angular/material';
+import {JoinComponent} from './components/join/join.component';
 
 @Component({
     selector: 'app-root',
@@ -12,30 +14,20 @@ export class AppComponent implements OnInit {
     public list = [];
     public form;
     public user: any = {};
+    public users = [];
 
+    public displayList: boolean = false;
 
-    constructor(public socketService: SocketService) {
+    constructor(
+        public socketService: SocketService,
+        public dialog: MatDialog) {
         this.user.index = this.getRandomInt();
 
         this.socketService.initSocket();
 
         this.socketService.onMessage().subscribe((message) => {
-
-            if (message.user.index === this.user.index && message.action === 'CHECK') {
-                return;
-            }
-
-            if (message.user.index === this.user.index && message.action === 'DELETE') {
-                const exists = this.list.filter((p) => (p.index === message.product.index));
-                if (exists.length) {
-                    const index = this.list.indexOf(exists[0]);
-                    this.list.splice(index, 1);
-                }
-                return;
-            }
-
-
-            this.list = message.list;
+            this.list = message.db.products;
+            this.users = message.db.users;
         });
     }
 
@@ -47,6 +39,20 @@ export class AppComponent implements OnInit {
         this.form = new FormGroup({
             item: new FormControl('')
         });
+
+
+        setTimeout(() => {
+            this.dialog.open(JoinComponent, {data: {}}).afterClosed().subscribe(name => {
+                this.user.name = name;
+
+                this.socketService.send({
+                    action: 'JOIN',
+                    user: this.user,
+                });
+
+                this.displayList = true;
+            });
+        }, 0);
     }
 
     delete(product) {

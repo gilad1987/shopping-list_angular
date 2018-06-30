@@ -1,0 +1,8 @@
+<div dir="rtl">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="שם פרטי" [formControl]="usernameFormControl">
+        <mat-error>שדה חובה.</mat-error>
+        <mat-hint>בבקשה הכנס את שמך</mat-hint>
+    </mat-form-field>
+    <button mat-button (click)="send(usernameFormControl.value)">שלח</button>
+</div>

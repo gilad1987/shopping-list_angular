@@ -1,7 +1,12 @@
-<div dir="rtl">
+<div dir="rtl" *ngIf="displayList">
 
     <mat-card>
         <mat-card-title>רשימת קניות</mat-card-title>
+        <mat-card-subtitle>
+            משתמשים מחוברים :
+            <span *ngFor="let user of users;">{{user.name}} </span>
+        </mat-card-subtitle>
+
         <mat-card-content>
             <form [formGroup]="form">
                 <div class="add-action">
@@ -13,12 +18,21 @@
             </form>
 
             <ul>
-                <li *ngFor="let item of list;">
+                <li *ngFor="let item of (list | productUnChecked);">
                     <mat-checkbox
                             [checked]="item.checked"
                             (change)="onChecked($event, item)">
-                        <span class="product-name">{{item.name}} </span>
-                        <span class="user-name">{{item.user.index}}</span>
+                        <span class="product-name">{{item.name}}</span>
+                        <span class="user-name"> {{item.user.name}} </span>
+                    </mat-checkbox>
+                    <button mat-button color="warn" (click)="delete(item)">מחק</button>
+                </li>
+                <li *ngFor="let item of (list | productChecked);">
+                    <mat-checkbox
+                            [checked]="item.checked"
+                            (change)="onChecked($event, item)">
+                        <span class="product-name">{{item.name}}</span>
+                        <span class="user-name"> {{item.user.name}} </span>
                     </mat-checkbox>
                     <button mat-button color="warn" (click)="delete(item)">מחק</button>
                 </li>

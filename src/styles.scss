@@ -14,6 +14,7 @@ mat-card {
 
 .user-name {
   font-size: 11px;
+  color: #b9b9b9;
 }
 
 mat-checkbox.mat-checkbox-checked {
@@ -32,4 +33,12 @@ ul {
       margin-right: auto !important;
     }
   }
+}
+
+mat-card-subtitle span:after{
+  content: ',';
+}
+
+mat-card-subtitle span:last-child:after{
+  content: '.';
 }
