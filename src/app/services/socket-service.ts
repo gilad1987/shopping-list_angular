@@ -15,6 +15,7 @@ export class SocketService {
     private baseUrl = isDevMode() ? 'http://localhost:8080' : 'http://104.197.52.12/shopoing_api/';
 
     public initSocket(): void {
+        console.log('url', this.baseUrl);
         this.socket = socketIo(this.baseUrl);
     }
 
