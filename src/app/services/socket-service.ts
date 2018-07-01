@@ -16,11 +16,14 @@ export class SocketService {
 
     public initSocket(): void {
         console.log('url', this.baseUrl);
-        this.socket = socketIo(this.baseUrl);
+        this.socket = socketIo(this.baseUrl,
+            {
+                transports: ['websocket']
+            });
     }
 
     public send(message: any): void {
-        alert(message);
+        console.log(message);
         this.socket.emit('message', message);
     }
 
