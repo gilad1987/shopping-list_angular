@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
 })
 export class SocketService {
     private socket;
-    private baseUrl = isDevMode() ? 'http://localhost:8080' : 'http://104.197.52.12/socket.io/';
+    private baseUrl = isDevMode() ? 'http://localhost:8080' : 'http://35.238.58.110/socket.io/';
 
     public initSocket(): void {
         console.log('url', this.baseUrl);
