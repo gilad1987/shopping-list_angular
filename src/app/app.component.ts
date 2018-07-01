@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
     }
 
     add(productName) {
-debugger;
+
         const product = {
             index: Math.random(),
             name: productName,
